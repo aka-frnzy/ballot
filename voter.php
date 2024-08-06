@@ -27,6 +27,8 @@ $view = isset($_GET['view']) ? $_GET['view'] : 'elections';
             include('php/view_results_voter.php');
         } elseif ($view == 'vote' && isset($_GET['election_id'])) {
             include('vote.php');
+        } else {
+            include('php/available_elections.php');
         }
         ?>
     </div>

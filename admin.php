@@ -31,6 +31,8 @@ $view = isset($_GET['view']) ? $_GET['view'] : 'elections';
             } elseif ($view == 'results') {
                 include('php/view_results.php');
             }
+        } else {
+            include('php/manage_elections.php');
         }
         ?>
     </div>
