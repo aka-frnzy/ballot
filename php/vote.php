@@ -16,16 +16,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['candidate_id']) && iss
     $check_result = $stmt->get_result();
 
     if ($check_result->num_rows > 0) {
-        echo "<h1 style='text-align:center;'>You have already voted in this election.</h1>";
-        header("refresh:2;url=../voter.php?view=elections");
+        echo "<script>
+            alert('You have already voted in this election.');
+            window.location.href = '../voter.php?view=elections';";
+        // echo "<h1 style='text-align:center;'>You have already voted in this election.</h1>";
+        // header("refresh:2;url=../voter.php?view=elections");
     } else {
         $sql = "INSERT INTO votes (user_id, candidate_id, election_id) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("iii", $user_id, $candidate_id, $election_id);
 
         if ($stmt->execute()) {
-            echo "<h1 style='text-align:center;'>Vote submitted successfully!</h1>";
-            header("refresh:2;url=../voter.php?view=elections");
+            echo "<script>
+                alert('Vote submitted successfully!');
+                window.location.href = '../voter.php?view=elections';";
+            // echo "<h1 style='text-align:center;'>Vote submitted successfully!</h1>";
+            // header("refresh:2;url=../voter.php?view=elections");
         } else {
             echo "Error: " . $stmt->error;
         }
