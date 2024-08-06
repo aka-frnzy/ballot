@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include('db.php');
@@ -20,25 +19,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['user_role'] = $user['role'];
-            echo "Login successful. and user role is " . $_SESSION['user_role'];
-            if ($_SESSION['user_role'] == 'admin') {
-                header("Location:../admin.php");
-                exit();
-            }
-            header("location:../voter.php");
-            exit();
+            echo "<script>
+                window.location.href = '../" . ($_SESSION['user_role'] == 'admin' ? "admin.php" : "voter.php") . "';
+            </script>";
         } else {
-            // echo "Incorrect password.";
-            header("location:../login.php");
-            exit();
+            echo "<script>
+                alert('Incorrect password.');
+                window.location.href = '../login.php';
+            </script>";
         }
     } else {
-        // echo "No user found with that email.";
-        header("location:../login.php");
-        exit();
+        echo "<script>
+            alert('$email is not registered.');
+            window.location.href = '../login.php';
+        </script>";
     }
 
     $stmt->close();
     $conn->close();
 }
-?>
