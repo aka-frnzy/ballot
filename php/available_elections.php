@@ -22,7 +22,7 @@
                             <td>{$row['start_date']}</td>
                             <td>{$row['end_date']}</td>
                             <td>
-                                <a href='voter.php?view=vote&election_id={$row['id']}'>Vote</a>
+                                <button onclick='location.href=\"voter.php?view=vote&election_id={$row['id']}\"'>Vote</button>
                             </td>
                           </tr>";
                 }
@@ -32,4 +32,5 @@
             ?>
         </tbody>
     </table>
+
 </div>

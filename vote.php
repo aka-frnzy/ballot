@@ -16,8 +16,7 @@ if (isset($_GET['election_id'])) {
                 <input type='hidden' name='election_id' value='$election_id'>";
     while ($row = $result->fetch_assoc()) {
         echo "<div>
-                <input type='radio' id='candidate_{$row['id']}' name='candidate_id' value='{$row['id']}' required>
-                <label for='candidate_{$row['id']}'>{$row['name']} ({$row['position']})</label>
+                {$row['name']} ({$row['position']}): <input type='radio' id='candidate_{$row['id']}' name='candidate_id' value='{$row['id']}' required>
               </div>";
     }
     echo "  <button type='submit'>Submit Vote</button>

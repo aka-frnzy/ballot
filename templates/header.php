@@ -15,6 +15,9 @@ session_start();
             color: #fff;
             padding: 10px 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .navcontainer {
@@ -23,10 +26,10 @@ session_start();
             align-items: center;
         }
 
-        .navbar-title {
+        /* .navbar-title {
             font-size: 24px;
             font-weight: bold;
-        }
+        } */
 
         .logout-btn {
             background-color: #f44336;
@@ -41,13 +44,20 @@ session_start();
         .logout-btn:hover {
             background-color: #d32f2f;
         }
+
+        .logo {
+            width: 20%;
+            height: 90%;
+
+        }
     </style>
 </head>
 
 <body>
     <nav class="navbar">
         <div class="navcontainer">
-            <span class="navbar-title">The Ballot</span>
+            <!-- <span class="navbar-title">The Ballot</span> -->
+            <img src="assets/ballot.png" class='logo'>
             <?php if (isset($_SESSION['user_role'])) : ?>
                 <button class="logout-btn" onclick="window.location.href='php/logout.php'">Logout</button>
             <?php endif; ?>

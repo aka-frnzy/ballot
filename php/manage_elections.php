@@ -38,7 +38,7 @@
                         <td>{$row['start_date']}</td>
                         <td>{$row['end_date']}</td>
                         <td>
-                            <a href='php/delete_election.php?id={$row['id']}'>Delete</a>
+                        <button style='background-color:red;' onclick='window.location.href=`php/delete_election.php?id={$row['id']}`'>Delete</button>
                         </td>
                     </tr>";
             }

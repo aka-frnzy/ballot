@@ -48,7 +48,7 @@
                         <td>{$row['position']}</td>
                         <td>{$row['election_name']}</td>
                         <td>
-                            <a href='php/delete_candidate.php?id={$row['id']}'>Delete</a>
+                        <button style='background-color:red;' onclick='window.location.href=`php/delete_candidate.php?id={$row['id']}`'>Delete</button>
                         </td>
                     </tr>";
             }

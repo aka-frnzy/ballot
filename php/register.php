@@ -4,7 +4,9 @@ include('db.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    // $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = $_POST['password'];
+    $cpassword = $_POST['confirm_password'];
 
     // Check if the email is already in use
     $sql = "SELECT * FROM users WHERE email = ?";
@@ -19,9 +21,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             window.location.href = '../signup.php';
         </script>";
     } else {
+
+        // Check if the password and confirm password match
+        if ($password != $cpassword) {
+            echo "<script>
+                alert('Passwords do not match. Please try again.');
+                window.location.href = '../signup.php';
+            </script>";
+            exit();
+        }
+        $hash = password_hash($password, PASSWORD_DEFAULT);
         $sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sss", $name, $email, $password);
+        // $stmt->bind_param("sss", $name, $email, $password);
+        $stmt->bind_param("sss", $name, $email, $hash);
 
         if ($stmt->execute()) {
             echo "<script>
